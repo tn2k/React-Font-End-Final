@@ -10,6 +10,8 @@
         height: auto;
 
 
+
+
         .text-header-1 {
             font-size: 25px;
             font-weight: 700;
@@ -32,6 +34,9 @@
             padding: 10px 15px 10px 15px;
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 100;
+
 
 
             .child-search {
@@ -86,8 +91,11 @@
                 }
 
                 .form-input-people {
+
                     display: flex;
                     padding-bottom: 17px;
+
+
 
                     .text-title {
                         display: flex;
@@ -136,6 +144,7 @@
                     margin: 15px 0px 10px -10px;
                     padding: 10px;
                     border-radius: 10px;
+                    background-color: white;
                 }
 
             }
@@ -152,19 +161,15 @@
             }
         }
 
-        .swiper {
-            height: 400px;
-            width: 100%;
-
-            .swiper-wrapper {
+        .swiper-content {
+            padding: 15px 10px 0px 10px;
+            z-index: 3;
 
 
-                .swiper-button-prev {}
-
-                .swiper-slide {
-                    height: 300px;
-                    width: 230px;
-                }
+            img {
+                box-shadow: 0 0 10px rgba(0, 26, 255, 0.5);
+                ;
+                border-radius: 20px;
             }
         }
     }
