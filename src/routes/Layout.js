@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import HeaderPage from "./HeaderPage";
 import BottomPage from "./BottomPage";
+import ListProduct from "./ListProduct";
 import "./Layout.scss";
 import bedAlt from '../assets/images/bed-alt.svg'
 
@@ -20,6 +21,7 @@ import image6 from '../assets/images/pexels-mikhail-nilov-6530544.jpg'
 import image7 from '../assets/images/pexels-rachel-claire-6127261.jpg'
 import image8 from '../assets/images/pexels-vincent-gerbouin-1167021.jpg'
 import image9 from '../assets/images/pexels-vincent-gerbouin-1179156.jpg'
+
 
 
 class Layout extends React.Component {
@@ -61,7 +63,31 @@ class Layout extends React.Component {
   render() {
     const { location, adults, children, rooms, pets, checkIn, checkOut, inputPeople } = this.state;
     const listImage = [image1, image2, image3, image4, image5, image6, image7, image8, image9]
-    console.log('check input ', inputPeople)
+    const product = {
+      nameProduct: 'The Porter House Hotel Sydney',
+      point: 4.5,
+      peopleCheckPoint: 45,
+      image: { image1, image2, image3, image4 }, // Assuming image1, image2, image3, image4 are defined elsewhere
+      infor: `The Porter House Hotel - MGallery is nestled amongst the eclectic mix of heritage and modern buildings in the heart of Sydney's CBD. Take a journey of discovery for all the sense, where rich history meets modern elegance. You will find The Porter House Hotel, just footsteps away from Sydney's iconic attractions such as the Australian Museum, Hyde Park, Darling Harbour, Capitol Theatre and Circular Quay.`,
+      address: '203 Castlereagh Street, 2000 Sydney, Australia',
+      timeCheckIn: '2:00 PM',
+      timeCheckOut: '11:00 AM',
+      typeRoom: '1 Room - 1 adult',
+      ServicesAndEquipments: [
+        'Swimming pool',
+        'Shuttle',
+        'Restaurant',
+        'Wheelchair accessible',
+        'Fitness center',
+        'Wi-Fi',
+        'Air conditioning',
+        'Breakfast',
+        'Bar',
+        'Meeting rooms',
+        'Non Smoking',
+        'Room service',
+      ],
+    };
     return (
       <>
         <div className="content-header-page">
@@ -194,30 +220,26 @@ class Layout extends React.Component {
             </div>
             <button type="submit">Search</button>
           </form>
-          <div>Discover your new favorite stay</div>
-
+          <div className="text-header-3">Discover your new favorite stay</div>
 
           <Swiper
             modules={[Navigation, Pagination, A11y]}
             navigation
             pagination={{ clickable: true }}
-
             className="swiper-content"
             spaceBetween={0}
             slidesPerView={5}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
           >
-            {listImage.map((image, index) => (
-              <SwiperSlide > <img key={index} src={image} alt={`Image ${index + 1}`} /></SwiperSlide>
+            {listImage.map((imagetTitle, index) => (
+              <SwiperSlide key={index + 1}><img src={imagetTitle} alt={`imagetTitle ${index + 1}`} /></SwiperSlide>
             ))}
           </Swiper>
 
-
-
-
-
+          <div className="text-header-3">Browse hotels in Sydney</div>
+          <ListProduct />
         </div >
+
+
         <BottomPage />
       </>
     );
