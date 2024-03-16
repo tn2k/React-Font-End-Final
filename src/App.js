@@ -1,11 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from "react";
-// import { render } from "@testing-library/react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { connect } from 'react-redux';
+import './App.scss';
+
+// import { render } from "@testing-library/react";
+
 import Layout from './routes/Layout';
 import Home from './routes/Home';
 import Login from './routes/Login';
 import System from './routes/System';
+
 
 class App extends React.Component {
 
@@ -24,18 +30,19 @@ class App extends React.Component {
           </Routes>
         </span>
         {/* <ToastContainer
-          className="toast-container"
-          toastClassName="toast-item"
-          bodyClassName="toast-item-body"
-          autoClose={false}
-          hideProgressBar={true}
-          pauseOnHover={false}
-          pauseOnFocusLoss={true}
-          closeOnClick={false}
-          draggable={false}
-          closeButton={<CustomToastCloseButton />}
-        /> */}
-      </BrowserRouter>
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition="Bounce"
+      /> */}
+      </BrowserRouter >
     )
   }
 };
