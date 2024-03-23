@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+
+
+    .content-header-page {
+        width: 1300px;
+        margin: 0 auto;
+        height: auto;
+
+
+
+
+        .text-header-1 {
+            font-size: 25px;
+            font-weight: 700;
+            margin-top: 50px;
+        }
+
+        .text-header-2 {
+            font-size: 15px;
+            font-weight: 400;
+            margin-top: 7px;
+        }
+
+
+        .form-search {
+            display: flex;
+            width: 100%;
+            height: 67.5px;
+            margin-top: 50px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 10px 15px 10px 15px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 100;
+
+
+
+            .child-search {
+                display: flex;
+
+                label i {
+                    font-size: 140%;
+                    margin-top: 15px;
+                    margin-right: 5px;
+                }
+
+                .tab-text-child {
+                    margin-left: 10px;
+
+                    .text-child {
+                        font-size: 13px;
+                        color: rgba(0, 0, 0, 0.5)
+                    }
+
+                    input,
+                    label {
+                        font-weight: 600;
+                        border: none;
+                    }
+                }
+            }
+
+            .child-width-left {
+                width: 25%;
+                border-right: 1px solid rgba(0, 0, 0, 0.2);
+            }
+
+            .child-width-center {
+                width: 20%;
+                padding-left: 10px;
+                border-right: 1px solid rgba(0, 0, 0, 0.2);
+            }
+
+            .child-width-right {
+                width: 25%;
+                padding-left: 10px;
+                border-right: 1px solid rgba(0, 0, 0, 0.2);
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+
+
+                .icon-bed-alt {
+                    width: 7%;
+                    height: auto;
+
+                }
+
+                .form-input-people {
+
+                    display: flex;
+                    padding-bottom: 17px;
+
+
+
+                    .text-title {
+                        display: flex;
+                        align-items: center;
+                        width: 100px;
+                    }
+
+                    .number-input-layout {
+                        display: flex;
+                        flex-direction: row;
+
+                        .add-input,
+                        .subtract-input {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            border: 1px solid black;
+                            margin: 0px 10px 0px 10px;
+                        }
+
+                        i {
+                            padding: 12.5px;
+                        }
+
+                        .children,
+                        .adults,
+                        .rooms {
+                            border: 1px solid rgba(0, 0, 0, 0.2);
+                            width: 60px;
+                            height: 40px;
+                            text-align: center;
+                            padding-left: 12px;
+                        }
+                    }
+
+                    .pets {
+                        width: 30px;
+                        height: 30px;
+                        margin-left: 70px;
+                    }
+
+                }
+
+                .hide-show {
+                    border: 1px solid rgba(0, 0, 0, 0.5);
+                    margin: 15px 0px 10px -10px;
+                    padding: 10px;
+                    border-radius: 10px;
+                    background-color: white;
+                }
+
+            }
+
+            button {
+                width: 120px;
+                margin-left: 10px;
+                background-color: #007cc2;
+                color: white;
+                font-weight: 600;
+                border: none;
+                border-radius: 8px;
+                font-size: 17px;
+            }
+        }
+
+        .swiper-content {
+            padding: 15px 10px 0px 10px;
+            z-index: 3;
+
+
+            img {
+                box-shadow: 0 0 10px rgba(0, 26, 255, 0.5);
+                ;
+                border-radius: 20px;
+            }
+        }
+
+        .text-header-3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 20px 0px 10px 10px;
+        }
+
+    }
+}
