@@ -1,20 +1,34 @@
 import React, { useState } from "react";
-import axios from "axios";
-
+import { useEffect } from "react";
 import "./ListUser.scss";
 import CreateNewUser from "./CreateNewUser";
-
+import { getAllUser } from "../services/apiService";
 const ListUser = () => {
-  let data = axios.get("http://localhost:8081");
-  console.log("check user ", User);
+  const [AllUsers, setAllUsers] = useState([]);
+
+  useEffect(() => {
+    fetchAllUser();
+  }, []);
+
+  const fetchAllUser = async () => {
+    try {
+      let response = await getAllUser();
+
+      if (response.data.EC === 0) {
+        setAllUsers(response.data.users);
+      }
+    } catch (error) {
+      console.error("Failed to fetch users:", error);
+    }
+  };
   return (
     <div className="container mt-3">
       <h2>List User</h2>
       <CreateNewUser />
-
       <table className="table">
         <thead className="table-dark">
           <tr>
+            <th>Id</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
@@ -24,18 +38,23 @@ const ListUser = () => {
           </tr>
         </thead>
         <tbody>
-          {/* {User &&
-            User.leghth > 0 && */}
-          {User.map((User, index) => (
-            <tr key={index}>
-              <td>{User.Firstname}</td>
-              <td>{User.LastName}</td>
-              <td>{User.Email}</td>
-              <td>{User.Number}</td>
-              <td>{User.Role}</td>
-              <td>{User.Sex}</td>
+          {AllUsers && AllUsers.length > 0 ? (
+            AllUsers.map((User, index) => (
+              <tr key={index}>
+                <td>{User.id}</td>
+                <td>{User.firstName}</td>
+                <td>{User.lastName}</td>
+                <td>{User.email}</td>
+                <td>{User.phonenumber}</td>
+                <td>{User.roleId}</td>
+                <td>{User.gender}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6">No data found</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

@@ -30,7 +30,7 @@ const App = () => {
       </span>
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -41,6 +41,8 @@ const App = () => {
         theme="light"
         transition="Bounce"
       />
+      {/* Same as */}
+      <ToastContainer />
     </BrowserRouter>
   );
 };

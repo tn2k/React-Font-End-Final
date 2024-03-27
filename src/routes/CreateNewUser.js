@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import axios from "axios";
+import { toast } from "react-toastify";
+
+
+import { createNewUser } from "../services/apiService";
+import "./CreateNewUser.scss"
 
 const CreateNewUser = () => {
   const [firstName, setfirstName] = useState("");
@@ -13,8 +16,9 @@ const CreateNewUser = () => {
   const [phonenumber, setNumber] = useState("");
   const [Role, setRole] = useState("User");
   const [gender, setgender] = useState("");
-
   const [show, setShow] = useState(false);
+  const [showErrorPassword, setShowErrorPassword] = useState(false);
+
   const handleClose = () => {
     setShow(false);
     setfirstName("");
@@ -27,29 +31,40 @@ const CreateNewUser = () => {
   };
   const handleShow = () => setShow(true);
 
-  const handleSubmitCreateUser = () => {
-    let data = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-      phonenumber: phonenumber,
-      gender: gender,
-      roleId: Role,
-    };
-    // const form = new FormData();
-    // form.append(firstName, "firstName");
-    // form.append(lastName, "lastName");
-    // form.append(email, "email");
-    // form.append(password, "password");
-    // form.append(phonenumber, "phonenumber");
-    // form.append(Role, "Role");
-    // form.append(gender, "gender");
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
 
-    let res = axios.post("http://localhost:8081/create-User", data);
+  const validatePassword = (password) => {
+    return /[A-Z]/.test(password) &&
+      /[a-z]/.test(password) &&
+      /[0-9]/.test(password) &&
+      password.length > 4;
+  }
 
-    console.log("check data ", data);
-    handleClose();
+  const handleSubmitCreateUser = async () => {
+    const isValidEmail = validateEmail(email);
+    const isValidPassword = validatePassword(password);
+    if (!isValidEmail) {
+      toast.error('email not exits')
+      return;
+    }
+    else if (!isValidPassword) {
+      toast.error('invalid password !')
+      setShowErrorPassword(true)
+      return;
+    }
+    else {
+
+
+      let res = await createNewUser(firstName, lastName, email, password, phonenumber, gender, Role);
+      handleClose();
+      toast.success('Create a new user success!')
+    }
   };
 
   return (
@@ -103,6 +118,9 @@ const CreateNewUser = () => {
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>
+            {showErrorPassword &&
+              <div className="col-md-12 error-password">Password needs min 1 uppercase, 1 lowercase, 1 number , be longer than 4 characters.</div>
+            }
             <div className="col-4">
               <label className="form-label">Number</label>
               <input
@@ -155,16 +173,14 @@ const CreateNewUser = () => {
             <div className="col-md-12 show-image" htmlFor="inputZip">
               <img />
             </div> */}
-            <div style={{ display: "flex", gap: "30px", marginTop: "30px" }}>
+            <div className="close_submit">
               <Button
-                style={{ width: "70px" }}
                 variant="secondary"
                 onClick={handleClose}
               >
                 Close
               </Button>
               <Button
-                style={{ width: "90px" }}
                 variant="primary"
                 onClick={() => handleSubmitCreateUser()}
               >
