@@ -10,3 +10,13 @@
   font-size: 17px;
   font-weight: 500;
 }
+
+.fa-trash,
+.fa-pen-to-square {
+  cursor: pointer;
+  margin-left: 18%;
+
+  &:hover {
+    color: blue;
+  }
+}

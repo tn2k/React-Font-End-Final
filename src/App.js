@@ -11,6 +11,7 @@ import Home from "./routes/Home";
 import Login from "./routes/Login";
 import System from "./routes/System";
 import ListUser from "./routes/ListUser";
+import HomeAdmin from "./routes/admin/HomeAdmin";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/Login" element={<Login />} />
           <Route path="/System" element={<System />} />
           <Route path="/listUser" element={<ListUser />} />
+          <Route path="/admin" element={<HomeAdmin />} />
 
           {/* <Route path={path.HOME} exact component={(Home)} />
           <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
