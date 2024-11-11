@@ -1,0 +1,14 @@
+.container {
+  .table {
+    .table-dark {
+      i {
+        cursor: pointer;
+        margin-left: 18%;
+
+        &:hover {
+          color: blue;
+        }
+      }
+    }
+  }
+}

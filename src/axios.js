@@ -1,16 +1,25 @@
 import axios from 'axios';
-import _ from 'lodash';
+
 
 const instance = axios.create({
     baseURL: process.env.REACT_APP_BACKEND_URL,
-    // withCredentials: true
+});
+
+instance.defaults.withCredentials = true;
+
+instance.interceptors.request.use(function (config) {
+    return config;
 });
 
 instance.interceptors.response.use(
     (response) => {
-        // Thrown error for request with OK status code
-        const { data } = response;
-        return response && response.data ? response.data : response;
-    });
+        return response.data ? response.data : response;
+    },
+    (error) => {
+        // Handle the error (you can add custom logic here)
+        return Promise.reject(error);
+    }
+);
+
 
 export default instance;

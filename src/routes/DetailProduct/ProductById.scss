@@ -1,0 +1,434 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+
+  .content-deltail-product {
+    width: 100%;
+    height: 100%;
+
+    .content-information-detail-product {
+      margin: 50px 3.5%;
+
+      .title-name-product {
+        font-size: 52px;
+        font-weight: 600;
+      }
+
+      .title-adress-product {
+        display: flex;
+        gap: 10px;
+
+        i {
+          padding-top: 2px;
+        }
+
+        .text-adress-product {
+          font-size: 17px;
+          font-weight: 400;
+          color: #a0a0a0;
+        }
+      }
+
+      .information-basic-product {
+        display: flex;
+        gap: 37px;
+        font-size: 16px;
+        padding-top: 20px;
+
+        .title-information {
+          color: rgb(7, 141, 141);
+          border: 2px solid rgb(7, 141, 141);
+          font-weight: 600;
+        }
+
+        .child-information {
+          display: flex;
+          gap: 10px;
+          background-color: rgb(230, 230, 230);
+
+          i {
+            padding-top: 3px;
+          }
+        }
+
+        .basic-product {
+          width: auto;
+          height: auto;
+          padding: 7px 15px 7px 15px;
+          border-radius: 20px;
+        }
+      }
+
+      .content-center-product {
+        padding-top: 50px;
+        width: 100%;
+        height: auto;
+        display: flex;
+        gap: 37px;
+
+        .all-information-product-detail {
+          width: 67%;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+
+          .information-image-product {
+            display: flex;
+            height: auto;
+
+            .thumbnail-product {
+              width: 70%;
+              height: 440px;
+              margin: 13px;
+              border-radius: 20px;
+            }
+
+            .image-product {
+              display: flex;
+              flex-direction: column;
+              width: 30%;
+
+              .child-image-product {
+                height: 215px;
+                margin-top: 13px;
+
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center;
+                  border-radius: 20px;
+                }
+              }
+            }
+          }
+
+          .breadcrumb-navigation {
+            display: flex;
+            font-size: 17px;
+            color: #2c2c2c;
+
+            .fa-house {
+              font-size: 20px;
+              padding-right: 10px;
+              margin-top: 2px;
+            }
+
+            .fa-chevron-right {
+              padding-right: 10px;
+              margin-top: 5px;
+              font-size: 15px;
+            }
+
+            .child-breadcrumb-navigation {
+              padding-right: 10px;
+            }
+          }
+          .tab-list-information-product {
+            padding-top: 20px;
+            display: flex;
+
+            .child-tab-list {
+              width: 20%;
+              font-size: 16px;
+              text-align: center;
+              border-bottom: 1px solid rgb(226, 226, 226);
+              box-shadow: 0 4px 8px rgba(230, 230, 230, 0.1);
+              padding-bottom: 20px;
+              cursor: pointer;
+              color: #858585;
+
+              &:hover {
+                border-bottom: 3.7px solid rgb(78, 138, 123);
+                box-shadow: 0 4px 8px rgb (13, 48, 39);
+                // color: #2c2c2c;
+                // font-weight: 700;
+              }
+            }
+          }
+
+          .information-description-product {
+            margin-top: 20px;
+          }
+
+          .information-details-product {
+            .child-information-details-product {
+              gap: 15px;
+              display: flex;
+              font-weight: 600;
+
+              i {
+                font-size: 25px;
+                margin-top: 5px;
+              }
+
+              .text-information-details-product {
+                font-size: 24px;
+              }
+            }
+
+            .content-detail-product {
+              margin-top: 20px;
+              display: flex;
+
+              .basic-room-amenities {
+                width: 50%;
+                padding-left: 30px;
+
+                .title-basic-room-amenities {
+                  font-size: 17px;
+                  font-weight: 600;
+                }
+
+                .content-basic-room-amenities {
+                  margin-top: 15px;
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 10px;
+
+                  .child-basic-room-amenities {
+                    display: flex;
+                    gap: 10px;
+
+                    .name-amenities {
+                      white-space: nowrap;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .rental-conditions-room {
+            .title-terms-conditions {
+              margin: 40px 0px 40px 0px;
+              font-size: 20px;
+              font-weight: 600;
+            }
+          }
+
+          .content-price-details {
+            border: 1px solid rgb(207, 207, 207);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+
+            .child-basic-price-room {
+              margin-top: 30px;
+              justify-content: space-between;
+
+              .price-product {
+                font-weight: 600;
+                font-size: 18px;
+                float: left;
+              }
+
+              .value-price-product {
+                float: right;
+                display: flex;
+                font-weight: 600;
+
+                i {
+                  margin-top: 3px;
+                }
+              }
+            }
+          }
+
+          .information-how-to-book {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .child-information-how-to-book {
+              border: 1px solid #a0a0a0;
+              padding: 12px 17px 12px 17px;
+              font-size: 20px;
+              border-radius: 15px;
+              width: 65%;
+
+              .text-information-how-to-book {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                .text-how-to-book {
+                  float: left;
+                }
+
+                .icon-information-how-to-book {
+                  float: right;
+                  color: #a0a0a0;
+                }
+
+                .content-how-to-book {
+                  margin-top: 20px;
+                }
+              }
+            }
+          }
+        }
+
+        .information-price-product {
+          margin-top: 10px;
+          width: 33%;
+          height: 448px;
+          border: 1px solid rgb(231, 231, 231);
+          border-radius: 20px;
+          padding: 15px;
+          box-shadow: 0 4px 8px rgba(63, 63, 63, 0.2);
+
+          .detail-all-costs {
+            font-size: 15px;
+            text-decoration: underline;
+            padding-left: 77%;
+          }
+
+          .information-check-in-check-out {
+            display: flex;
+            padding: 10px 7% 10px 7%;
+            justify-content: space-between;
+
+            .child-information-check-in-check-out {
+              margin: 15px;
+              padding: 5px 20px;
+              text-align: center;
+              border: 1px solid rgb(240, 240, 240);
+              border-radius: 50px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              width: 150px;
+            }
+
+            .text-check-in-check-out {
+              font-weight: 700;
+              font-size: 15px;
+            }
+
+            .fa-arrow-right {
+              margin-top: 35px;
+              color: #757575;
+            }
+          }
+
+          .title-all-costs {
+            text-align: center;
+            font-size: 19px;
+            color: #245680;
+            font-weight: 500;
+          }
+
+          .price-product {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 32px;
+          }
+
+          .title-note-costs {
+            text-align: center;
+            font-size: 13px;
+            color: #7a7a7a;
+          }
+
+          .button-rent-now {
+            font-size: 19px;
+            margin: 20px;
+            padding: 8px;
+            text-align: center;
+            background-color: rgb(80, 125, 155);
+            color: #ffffff;
+            border-radius: 25px;
+          }
+
+          .button-request-information {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            font-size: 20px;
+            margin: 20px;
+            padding: 8px;
+            color: rgb(80, 125, 155);
+            border-radius: 25px;
+            border: 1px solid rgb(223, 223, 223);
+            box-shadow: 0 3px 6px rgba(97, 97, 97, 0.2);
+
+            i {
+              margin-top: 5px;
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+
+      .information-product-more {
+        margin-top: 50px;
+      }
+    }
+  }
+}
+
+/////  reuse code scss  /////
+
+.list-separator {
+  border-bottom: 2px solid rgb(219, 219, 219);
+  margin: 67px 25% 40px 25%;
+}
+
+.basic-information-room {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-right: 2px solid #e6e5e5;
+
+  .child-basic-information-room {
+    display: flex;
+    justify-content: space-between;
+
+    .attribute-product {
+      float: left;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .value-product {
+      float: right;
+      padding-right: 30px;
+    }
+  }
+}
+
+.content-description {
+  color: #616161;
+
+  &.expanded {
+    max-height: 200px;
+    overflow: hidden;
+  }
+}
+
+.wiew-less-description,
+.wiew-all-description {
+  margin-top: 10px;
+  font-size: 18px;
+
+  button {
+    border: none;
+    border-bottom: 3px solid black;
+    font-weight: 600;
+    background-color: white;
+  }
+}
+
+.title-information-product {
+  font-size: 33px;
+  font-weight: 700;
+  color: #4d4d4d;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+///////// end reuse code scss //////////////

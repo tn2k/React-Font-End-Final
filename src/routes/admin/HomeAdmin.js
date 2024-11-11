@@ -1,7 +1,7 @@
 import React from 'react'
 import './HomeAdmin.scss';
 import { NavLink } from 'react-router-dom';
-import ListUser from '../ListUser';
+import ListUser from '../ListUser/ListUser';
 
 
 const HomeAdmin = () => {
@@ -42,7 +42,6 @@ const HomeAdmin = () => {
                 </li>
             </div>
             <div className='fetch-list-user'>
-                <div><i className="fa-solid fa-list"></i></div>
                 <ListUser />
             </div>
         </div>

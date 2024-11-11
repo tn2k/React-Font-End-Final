@@ -1,0 +1,287 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  .content-header-page {
+    width: 100%;
+    margin: 0 auto;
+    height: auto;
+
+    .form-input-content-page {
+      width: 100%;
+      background-color: rgb(253, 243, 243);
+      height: 770px;
+      display: flex;
+
+      .child-form-input {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 3% 0% 5% 0%;
+        padding: 0 0 0 10%;
+
+        .text-form-input1 {
+          font-size: 60px;
+          font-weight: 700;
+        }
+
+        .text-form-input2 {
+          font-size: 30px;
+          font-weight: 300;
+          color: rgb(131, 131, 131);
+        }
+
+        .image-form-input {
+          display: flex;
+
+          img {
+            margin: 7% 0% 10% 5%;
+            border-radius: 7%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          }
+        }
+
+        .information-field {
+          margin: 15% 26% 0% 0%;
+          height: 390px;
+          border-radius: 10%;
+          padding: 5% 5% 5% 5%;
+          border: 1px solid rgb(207, 207, 207);
+          background-color: white;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          display: flex;
+          flex-direction: column;
+          gap: 9px;
+
+          .name-input {
+            font-size: 17px;
+            font-weight: 500;
+          }
+
+          .form-input-type {
+            display: flex;
+
+            .input-type {
+              border: 1px solid rgb(214, 214, 214);
+              width: 127px;
+              height: 70px;
+              text-align: center;
+              align-items: center;
+              margin: 10px 10px 10px 10px;
+              padding-top: 10px;
+              border-radius: 12px;
+              font-size: 15px;
+              font-weight: 300;
+            }
+
+            .input-type.selected {
+              border: 2px solid rgb(114, 114, 114); /* Green if selected */
+              color: #7c5da0;
+            }
+          }
+
+          .search-form-input {
+            border: 1px solid #a5a5a5;
+            height: 40px;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 19px;
+            background-color: rgb(224, 73, 73);
+            color: white;
+          }
+
+          .input-city,
+          .input-Check-in {
+            border: none;
+            border-bottom: 1px solid #d1d1d1;
+            outline: none;
+            padding: 5px 0;
+            width: 100%;
+            box-sizing: border-box;
+          }
+        }
+      }
+    }
+
+    .contener-introduction {
+      padding-left: 5%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .child-introduction {
+        display: flex;
+        gap: 20px;
+
+        .select-type-introduction {
+          border: 1px solid rgb(173, 173, 173);
+          border-radius: 25px;
+          height: 50px;
+          padding: 10px 10px 10px 10px;
+          cursor: pointer;
+        }
+        .select-type-introduction.selected {
+          border: 2px solid rgb(114, 114, 114); /* Green if selected */
+          color: #2b2b2b;
+          font-weight: 600;
+        }
+      }
+
+      .content-instruct {
+        height: auto;
+        width: 100%;
+        gap: 2%;
+        display: flex;
+
+        .icon-introduction {
+          width: 30%;
+          padding: 20px 15px 20px 15px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          border-radius: 10px;
+          border: 2px solid rgb(197, 197, 197);
+
+          img {
+            max-width: 43%;
+            display: block;
+            margin: 0 auto;
+            border-radius: 15px;
+          }
+
+          .title-description-introduction {
+            font-size: 18px;
+            font-weight: 600;
+          }
+
+          .child-description-introduction {
+            height: 90px;
+            color: #727272;
+          }
+
+          .link-description-introduction {
+            color: rgb(69, 69, 255);
+            font-weight: 700;
+            font-size: 15.5px;
+          }
+        }
+      }
+    }
+
+    .swiper-content {
+      margin-left: -5%;
+      padding: 0 5% 5% 5%;
+
+      .content-favorite-stay {
+        width: 92%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+
+        .image-favorite-stay {
+          width: 100%;
+          height: 230px;
+          border-radius: 10px 10px 0 0;
+        }
+
+        .description-favorite-stay {
+          width: 100%;
+          height: 95px;
+          padding: 0 0 0 5%;
+          margin-top: -10%;
+
+          .text1-description-favorite-stay {
+            padding-top: 10px;
+            color: white;
+            display: flex;
+
+            .city-description {
+              font-weight: 700;
+            }
+            .region-description {
+              font-weight: 400;
+            }
+          }
+
+          .text2-description-favorite-stay {
+            margin-top: 10px;
+            font-weight: 600;
+          }
+
+          .text3-description-favorite-stay {
+            font-weight: 400;
+          }
+        }
+      }
+    }
+
+    .contener-favorite-stay {
+      padding-left: 5%;
+    }
+
+    .contener-list-product {
+      padding-left: 5%;
+    }
+
+    .read-news-page {
+      height: auto;
+      width: 100%;
+      background-color: rgb(235, 235, 235);
+      padding-left: 5%;
+
+      .swiper-content {
+        margin-left: -5%;
+        padding: 50px 5% 5% 5%;
+
+        .content-read-news-page {
+          width: 92%;
+          height: auto;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          display: flex;
+          flex-direction: column;
+
+          .image-read-news-page {
+            width: 100%;
+            height: 230px;
+            border-radius: 10px 10px 0 0;
+          }
+
+          .description-read-news-page {
+            width: 100%;
+            height: 95px;
+            margin-left: 5px;
+            .text2-description-read-news-page {
+              margin-top: 10px;
+              font-weight: 600;
+              height: 47px;
+              overflow: hidden;
+            }
+
+            .text3-description-read-news-page {
+              margin-top: 10px;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+    }
+    .text-header-3 {
+      font-size: 34px;
+      font-weight: 700;
+      margin: 70px 0px 0px 0px;
+    }
+
+    .text-header-4 {
+      font-size: 21px;
+      margin-bottom: 70px;
+    }
+  }
+}

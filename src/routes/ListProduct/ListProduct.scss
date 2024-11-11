@@ -1,0 +1,11 @@
+.list-product-page {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+
+  .list-box-product {
+    margin: 10px 0px 20px 0px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

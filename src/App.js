@@ -1,18 +1,21 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { connect } from "react-redux";
 import "./App.scss";
 
 // import { render } from "@testing-library/react";
-import Layout from "./routes/Layout";
+import Layout from "./routes/LayoutPage/Layout";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
 import System from "./routes/System";
-import ListUser from "./routes/ListUser";
+import ListUser from "./routes/ListUser/ListUser";
 import HomeAdmin from "./routes/admin/HomeAdmin";
-
+import DetailProduct from "./routes/DetailProduct/ProductById";
+import PageHowWorks from "./routes/PageHowWorks/PageHowWorks";
+import ModalCreateProduct from "../src/routes/CreateProduct/ModalCreateProduct"
+import Account from "../src/routes/Account/Account"
 const App = () => {
   return (
     <BrowserRouter>
@@ -23,8 +26,11 @@ const App = () => {
           <Route path="/Login" element={<Login />} />
           <Route path="/System" element={<System />} />
           <Route path="/listUser" element={<ListUser />} />
+          <Route path="/detailProduct" element={<DetailProduct />} />
           <Route path="/admin" element={<HomeAdmin />} />
-
+          <Route path="/how-works" element={<PageHowWorks />} />
+          <Route path="/create-product" element={<ModalCreateProduct />} />
+          <Route path="/account" element={<Account />} />
           {/* <Route path={path.HOME} exact component={(Home)} />
           <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
           <Route path={path.SYSTEM} component={userIsAuthenticated(System)} /> */}

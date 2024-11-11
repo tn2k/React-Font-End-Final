@@ -1,0 +1,19 @@
+{
+  "welcome": "Welcome to our website",
+  "description": "This is an example of i18next integration.",
+  "Support": "Support",
+  "City": "City",
+  "Messenger": "Messenger",
+  "Login": "Login",
+  "Find the best": "Find the best  ",
+  "home": "home ",
+  "anywhere": "anywhere",
+  "Apartments and rooms bookable directly online": "Apartments and rooms bookable directly online",
+  "Type a city...": "Type a city...",
+  "Set a price": "Set a price ",
+  "Prince": "Prince",
+  "Accommodation typology": "Accommodation typology",
+  "Full property": "Full property",
+  "Room": "Room ",
+  "Search Now": "Search Now"
+}

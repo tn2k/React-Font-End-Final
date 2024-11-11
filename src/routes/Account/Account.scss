@@ -1,0 +1,224 @@
+.account-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  .account-sidebar {
+    width: 17%;
+    border: 1px solid rgb(218, 218, 218);
+    height: auto;
+    padding: 20px 10px 10px 25px;
+
+    .account-title-sidebar {
+      margin-top: 10px;
+      font-size: 25px;
+      display: flex;
+      i {
+        margin-top: 5px;
+        margin-right: 10px;
+      }
+    }
+
+    .account-list-option-sibar {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+
+      .account-child-list-option-sibar {
+        font-size: 17px;
+        cursor: pointer;
+        display: flex;
+
+        i {
+          margin-right: 10px;
+          font-size: 23px;
+        }
+      }
+    }
+  }
+  .account-content {
+    width: 83%;
+
+    .account-header-create-product {
+      border: 2px solid rgb(218, 218, 218);
+      padding: 20px 30px 20px 30px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .account-title-header {
+        display: flex;
+
+        .icon-account-title-header {
+          padding: 7px 15px 7px 15px;
+          border: 1px solid rgb(223, 223, 223);
+          font-size: 20px;
+          border-radius: 20%;
+        }
+
+        .text-header-title {
+          margin-left: 20px;
+
+          .text-account-title-header {
+            font-size: 13px;
+            color: rgb(158, 158, 158);
+          }
+
+          .text2-account-title-header {
+            font-size: 19px;
+            color: rgb(0, 0, 0);
+            font-weight: 600;
+          }
+        }
+      }
+
+      .list-button-header-create-product {
+        float: right;
+        display: flex;
+        gap: 30px;
+
+        .account-button-save-product {
+          margin-top: 10px;
+          padding: 7px 10px 7px 10px;
+          display: flex;
+          border: 1px solid rgb(170, 170, 170);
+          border-radius: 10px;
+          font-size: 14px;
+          font-weight: 500;
+
+          i {
+            margin-top: 2px;
+            font-size: 17px;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+
+    .account-form-input-product {
+      padding: 37px;
+      display: flex;
+
+      .account-product-image {
+        width: 34%;
+        height: auto;
+        border: 1px solid rgb(192, 192, 192);
+        border-radius: 10px;
+
+        .title-product-image {
+          padding: 10px;
+          font-size: 19px;
+          border-bottom: 1.5px solid rgb(192, 192, 192);
+          height: 50px;
+        }
+        .child-title-product-image {
+          padding: 10px;
+          font-size: 15px;
+        }
+
+        .show-image-product {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: auto;
+          height: auto;
+
+          .image-product {
+            border: 1px solid black;
+            width: 384px;
+            height: 250px;
+          }
+        }
+
+        .button-add-image-product {
+          display: flex;
+          margin: 10px;
+          border: 1px solid rgb(153, 153, 153);
+          width: 200px;
+          padding: 5px 10px 5px 10px;
+          border-radius: 10px;
+          cursor: pointer;
+
+          i {
+            font-size: 18px;
+            margin: 2px 8px 0px 0px;
+          }
+        }
+      }
+      .account-general-information {
+        width: 66%;
+        margin-left: 30px;
+        height: auto;
+        border: 1px solid rgb(192, 192, 192);
+        border-radius: 10px;
+
+        .title-input-information-product {
+          padding: 15px;
+          font-size: 17px;
+          border-bottom: 1.5px solid rgb(192, 192, 192);
+          height: 50px;
+        }
+      }
+      .child-input-information-product {
+        padding: 20px 15px 15px 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .name-input-product-name {
+          font-size: 15px;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+          width: 100%;
+          padding: 10px;
+          margin-top: 5px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-size: 16px;
+
+          &:focus {
+            border-color: #6c63ff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(108, 99, 255, 0.2);
+          }
+        }
+        .child-input-product {
+          display: flex;
+          gap: 3.3333%;
+
+          .format-input-product {
+            width: 33.3333%;
+          }
+        }
+        .name-input-product-attributes {
+          margin-top: 10px;
+          padding-top: 10px;
+          border-top: 1px solid rgb(185, 185, 185);
+          font-size: 18px;
+          font-weight: 500;
+        }
+        .name-input-product-description {
+          margin-top: 20px;
+        }
+
+        textarea {
+          padding: 5px 10px 5px 10px;
+        }
+
+        .list-amenities-product {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+          .amenity {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+          }
+        }
+      }
+    }
+  }
+}
