@@ -3,7 +3,7 @@ import "./Account.scss";
 import { toast } from "react-toastify";
 // import { useNavigate } from 'react-router-dom';
 import { createNewProduct } from "../../services/apiProduct"
-
+import SideBar from "./SideBar"
 
 const Account = () => {
   const [image, setImage] = useState(null);
@@ -117,6 +117,7 @@ const Account = () => {
   const handleSubmitPublicProduct = async (event) => {
     event.preventDefault(); // Ngăn form tự động gửi
     const formData = new FormData(document.getElementById("myForm"));
+
     try {
       const response = await fetch("https://api1.example.com/submit", {
         method: "POST",
@@ -131,30 +132,7 @@ const Account = () => {
 
   return (
     <div className="account-container">
-      <div className="account-sidebar">
-        <div className="account-title-sidebar">
-          <i className="fa-duotone fa-solid fa-user"></i>
-          Hi Tndev
-        </div>
-        <div className="account-list-option-sibar">
-          <div className="account-child-list-option-sibar">
-            <i className="fa-thin fa-house"></i>
-            <div>Overview</div>
-          </div>
-          <div className="account-child-list-option-sibar">
-            <i className="fa-light fa-circle-plus"></i>
-            <div>Create Product</div>
-          </div>
-          <div className="account-child-list-option-sibar">
-            <i className="fa-sharp-duotone fa-solid fa-pen-to-square"></i>
-            <div>Edit Product</div>
-          </div>
-          <div className="account-child-list-option-sibar">
-            <i className="fa-light fa-gear"></i>
-            <div> Setting</div>
-          </div>
-        </div>
-      </div>
+      <SideBar />
       <form className="account-content" onSubmit={handleSubmitCreateProduct} id="myForm">
         <div className="account-header-create-product">
           <div className="account-title-header">
@@ -316,7 +294,6 @@ const Account = () => {
                     <input type="checkbox" checked={productData.product_amenities.includes(amenity)} onChange={() => toggleAmenity(amenity)} />
                     {amenity}
                   </div>
-
                 ))}
               </div>
             </div>

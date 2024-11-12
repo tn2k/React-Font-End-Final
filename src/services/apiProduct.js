@@ -21,6 +21,10 @@ const getAllProducts2 = () => {
     return instance.get("http://localhost:8081/v1/api/product/productRadoom")
 };
 
-export { getAllProducts, createNewProduct, getAllProducts2 };
+const getListProduct = (userId) => {
+    return instance.get(`http://localhost:8081/v1/api/product/${userId}`)
+}
+
+export { getAllProducts, createNewProduct, getAllProducts2, getListProduct };
 
 

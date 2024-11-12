@@ -48,6 +48,7 @@ const Login = () => {
       const statusCode = await data?.statusCode
       if (statusCode === 200) {
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userId', data?.metadata?.User?.tenant_id);
         handleCleanData();
         toast.success("Login user success!");
         navigate('/');

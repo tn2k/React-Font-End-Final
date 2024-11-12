@@ -1,0 +1,35 @@
+.account-sidebar {
+  width: 17%;
+  border: 1px solid rgb(218, 218, 218);
+  height: auto;
+  padding: 20px 10px 10px 25px;
+  height: auto;
+
+  .account-title-sidebar {
+    margin-top: 10px;
+    font-size: 25px;
+    display: flex;
+    i {
+      margin-top: 5px;
+      margin-right: 10px;
+    }
+  }
+
+  .account-list-option-sibar {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    .account-child-list-option-sibar {
+      font-size: 17px;
+      cursor: pointer;
+      display: flex;
+
+      i {
+        margin-right: 10px;
+        font-size: 23px;
+      }
+    }
+  }
+}

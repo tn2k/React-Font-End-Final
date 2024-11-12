@@ -36,10 +36,15 @@ const HeaderPage = (props) => {
         navigate('/');
     };
 
+    const handleLinkAccount = () => {
+        navigate('/account');
+    };
+
     const handleLogOut = async () => {
         try {
             await logOut()
-            localStorage.setItem('isLoggedIn', 'false');
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userId');
             setIsLoggedIn(false);
             toast.success("Log Out user success!");
         } catch (error) {
@@ -80,14 +85,13 @@ const HeaderPage = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="tab-child">
-                    <i class="fa-light fa-user"></i>&nbsp;&nbsp;
+                <div className="tab-child" onClick={handleLinkAccount}>
+                    <i class="fa-duotone fa-solid fa-user"></i>&nbsp;&nbsp;
                     <div>{t('Account')}</div>
                 </div>
                 <div className="tab-child" onClick={isLoggedIn ? handleLogOut : handleLogin}>
                     <i className="fa-solid fa-right-to-bracket"></i>&nbsp;&nbsp;
                     <div >{isLoggedIn ? t('Log Out') : t('Login')}</div>
-
                 </div>
             </div>
         </div >
