@@ -22,7 +22,7 @@ const getAllProducts2 = () => {
 };
 
 const getListProduct = (userId) => {
-    return instance.get(`http://localhost:8081/v1/api/product/${userId}`)
+    return instance.get(`http://localhost:8081/v1/api/product/published/all`)
 }
 
 export { getAllProducts, createNewProduct, getAllProducts2, getListProduct };

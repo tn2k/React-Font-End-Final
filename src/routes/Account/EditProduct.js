@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import "./Overview.scss";
+import "./EditProduct.scss";
 import SideBar from "./SideBar"
 import { Pagination } from '@mui/material';
 import { getListProduct } from "../../services/apiProduct";
 
-const Overview = () => {
+const EditProduct = () => {
     const [currentItems, setCurrentItems] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalItems, setTotalItems] = useState(0);
-    const itemsPerPage = 4;
+    const itemsPerPage = 10;
     const userId = localStorage.getItem('userId');
 
     const handlePageChange = (event, page) => {
@@ -19,24 +18,18 @@ const Overview = () => {
         const getListDataUser = async () => {
             try {
                 const data = await getListProduct(userId);
-                const response = data?.metadata;
-                if (Array.isArray(response)) {
-                    setTotalItems(response.length);
-                    const offset = (currentPage - 1) * itemsPerPage;
-                    const dataResponse = response.slice(offset, offset + itemsPerPage);
-                    setCurrentItems(dataResponse);
-                }
+                const response = data?.metadata
+                const offset = (currentPage - 1) * itemsPerPage;
+                const dataResponse = response.slice(offset, offset + itemsPerPage);
+                setCurrentItems(dataResponse);
             } catch (error) {
-                console.log(error);
+                console.log(error)
             }
         };
-
         if (userId) {
             getListDataUser();
         }
     }, [userId, currentPage, itemsPerPage]);
-
-
     return (
         <div className="overview-container">
             <SideBar />
@@ -78,7 +71,7 @@ const Overview = () => {
                                         <th>Quantity</th>
                                         <th>Created At</th>
                                         <th>Address</th>
-
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -101,6 +94,12 @@ const Overview = () => {
                                                     {product.updatedAt = new Date(product.updatedAt).toLocaleDateString('en-GB')}
                                                 </td>
                                                 <td>{product.product_address}</td>
+                                                <td>
+                                                    <div className="list-icon-action-product">
+                                                        <i className="fa-light fa-pen-to-square"></i>
+                                                        <i className="fa-regular fa-trash"></i>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         ))
                                     ) : (
@@ -111,7 +110,7 @@ const Overview = () => {
                                 </tbody>
                             </table>
                             <Pagination
-                                count={Math.ceil(totalItems / itemsPerPage)}
+                                count={Math.ceil(currentItems.length / itemsPerPage)}
                                 page={currentPage}
                                 onChange={handlePageChange}
                                 color="primary"
@@ -127,4 +126,4 @@ const Overview = () => {
     );
 };
 
-export default Overview;
+export default EditProduct;

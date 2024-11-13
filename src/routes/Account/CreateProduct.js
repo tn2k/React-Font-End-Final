@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
-import "./Account.scss";
+import "./CreateProduct.scss";
 import { toast } from "react-toastify";
 // import { useNavigate } from 'react-router-dom';
 import { createNewProduct } from "../../services/apiProduct"
 import SideBar from "./SideBar"
 
-const Account = () => {
+const CreateProduct = () => {
   const [image, setImage] = useState(null);
   const fileInputRef = useRef(null);
   const [productData, setProductData] = useState({
@@ -304,4 +304,4 @@ const Account = () => {
   );
 };
 
-export default Account;
+export default CreateProduct;

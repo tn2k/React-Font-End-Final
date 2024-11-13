@@ -14,9 +14,10 @@ import ListUser from "./routes/ListUser/ListUser";
 import HomeAdmin from "./routes/admin/HomeAdmin";
 import DetailProduct from "./routes/DetailProduct/ProductById";
 import PageHowWorks from "./routes/PageHowWorks/PageHowWorks";
-import ModalCreateProduct from "../src/routes/CreateProduct/ModalCreateProduct"
-import Account from "../src/routes/Account/Account"
+import CreateProduct from "../src/routes/Account/CreateProduct"
 import Overview from "../src/routes/Account/Overview"
+import EditProduct from "../src/routes/Account/EditProduct"
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -30,9 +31,9 @@ const App = () => {
           <Route path="/detailProduct" element={<DetailProduct />} />
           <Route path="/admin" element={<HomeAdmin />} />
           <Route path="/how-works" element={<PageHowWorks />} />
-          <Route path="/create-product" element={<ModalCreateProduct />} />
-          <Route path="/account" element={<Account />} />
+          <Route path="/create-product" element={<CreateProduct />} />
           <Route path="/overview" element={<Overview />} />
+          <Route path="/edit-product" element={<EditProduct />} />
           {/* <Route path={path.HOME} exact component={(Home)} />
           <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
           <Route path={path.SYSTEM} component={userIsAuthenticated(System)} /> */}
