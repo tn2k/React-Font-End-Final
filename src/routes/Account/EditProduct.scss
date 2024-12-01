@@ -169,10 +169,10 @@
               display: flex;
               flex-direction: row;
               gap: 20px;
-            }
 
-            &:last-child {
-              text-align: right;
+              i {
+                cursor: pointer;
+              }
             }
 
             &.status {

@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import "./Overview.scss";
 import SideBar from "./SideBar"
 import { Pagination } from '@mui/material';
-import { getListProduct } from "../../services/apiProduct";
+import { getListProduct, getListProduct2 } from "../../services/apiProduct";
 
 const Overview = () => {
     const [currentItems, setCurrentItems] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalItems, setTotalItems] = useState(0);
+    const [buttonType, setButtonType] = useState('all');
     const itemsPerPage = 4;
     const userId = localStorage.getItem('userId');
 
@@ -15,27 +16,48 @@ const Overview = () => {
         setCurrentPage(page);
     };
 
-    useEffect(() => {
-        const getListDataUser = async () => {
-            try {
-                const data = await getListProduct(userId);
-                const response = data?.metadata;
-                if (Array.isArray(response)) {
-                    setTotalItems(response.length);
-                    const offset = (currentPage - 1) * itemsPerPage;
-                    const dataResponse = response.slice(offset, offset + itemsPerPage);
-                    setCurrentItems(dataResponse);
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        };
+    const getListDataUser = useCallback(async () => {
+        const data = await getListProduct(userId);   // Dữ liệu cho Public
+        const data2 = await getListProduct2(userId); // Dữ liệu cho Draft
+        const response = [...(data.metadata || []), ...(data2.metadata || [])];
+        console.log(response)
+        let dataResponse;
+        if (buttonType === 'public') {
+            dataResponse = data.metadata || [];
+        } else if (buttonType === 'draft') {
+            dataResponse = data2.metadata || [];
+        } else if (buttonType === 'all') {
+            dataResponse = response;
+        }
 
+        if (Array.isArray(dataResponse)) {
+            setTotalItems(dataResponse.length);
+            const offset = (currentPage - 1) * itemsPerPage;
+            const paginatedData = dataResponse.slice(offset, offset + itemsPerPage);
+            setCurrentItems(paginatedData);
+        }
+    }, [userId, currentPage, itemsPerPage, buttonType]);
+
+    useEffect(() => {
         if (userId) {
             getListDataUser();
         }
-    }, [userId, currentPage, itemsPerPage]);
+    }, [userId, currentPage, buttonType, getListDataUser]);
 
+    const handleClickPublic = () => {
+        setButtonType('public');
+        setCurrentPage(1);
+    };
+
+    const handleClickDraft = () => {
+        setButtonType('draft');
+        setCurrentPage(1);
+    };
+
+    const handleClickAll = () => {
+        setButtonType('all');
+        setCurrentPage(1);
+    };
 
     return (
         <div className="overview-container">
@@ -59,9 +81,9 @@ const Overview = () => {
 
                 <div className="overview-list-product">
                     <div className="title-list-product">
-                        <div className="text-list-product">All</div>
-                        <div className="text-list-product">Public</div>
-                        <div className="text-list-product">Draft</div>
+                        <div className="text-list-product" onClick={handleClickAll}>All</div>
+                        <div className="text-list-product" onClick={handleClickPublic}>Public</div>
+                        <div className="text-list-product" onClick={handleClickDraft}>Draft</div>
                     </div>
                     <div className="content-list-product">
                         <div className="title-content-list-product">
@@ -78,7 +100,6 @@ const Overview = () => {
                                         <th>Quantity</th>
                                         <th>Created At</th>
                                         <th>Address</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -90,7 +111,7 @@ const Overview = () => {
                                                     <div className="show-image-thumbnail-product">
                                                         <img
                                                             className="image-thumbnail-product"
-                                                            src={product.product_thumb.url}
+                                                            src={product.product_image[0].url}
                                                             alt="Preview"
                                                         />
                                                     </div>
@@ -98,7 +119,7 @@ const Overview = () => {
                                                 <td>{product.product_price}</td>
                                                 <td>{product.product_quantity}</td>
                                                 <td>
-                                                    {product.updatedAt = new Date(product.updatedAt).toLocaleDateString('en-GB')}
+                                                    {product.createdAt = new Date(product.createdAt).toLocaleDateString('en-GB')}
                                                 </td>
                                                 <td>{product.product_address}</td>
                                             </tr>
@@ -117,8 +138,6 @@ const Overview = () => {
                                 color="primary"
                             />
                         </div>
-
-
                     </div>
                 </div>
             </div>

@@ -37,7 +37,7 @@ const HeaderPage = (props) => {
     };
 
     const handleLinkAccount = () => {
-        navigate('/account');
+        navigate('/Overview');
     };
 
     const handleLogOut = async () => {
@@ -86,7 +86,7 @@ const HeaderPage = (props) => {
                     </div>
                 </div>
                 <div className="tab-child" onClick={handleLinkAccount}>
-                    <i class="fa-duotone fa-solid fa-user"></i>&nbsp;&nbsp;
+                    <i className="fa-duotone fa-solid fa-user"></i>&nbsp;&nbsp;
                     <div>{t('Account')}</div>
                 </div>
                 <div className="tab-child" onClick={isLoggedIn ? handleLogOut : handleLogin}>

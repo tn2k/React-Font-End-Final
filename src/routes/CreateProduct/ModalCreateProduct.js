@@ -7,7 +7,7 @@ import { createNewProduct } from "../../services/apiProduct"
 const ModalCreateProduct = () => {
   const [productData, setProductData] = useState({
     product_name: '',
-    product_thumb: null,
+    product_image: null,
     product_price: 0,
     product_quantity: 0,
     product_type: '',
@@ -15,9 +15,9 @@ const ModalCreateProduct = () => {
     product_address: '',
     product_ratingsAverage: 0,
     product_attributes: {
-      house_description: '',
-      house_detail: '',
-      house_rules: '',
+      product_description: '',
+      product_detail: '',
+      product_rules: '',
       rentail_conditions: '',
       terms_and_conditions: ''
     },
@@ -27,7 +27,7 @@ const ModalCreateProduct = () => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === "product_thumb" && files) {
+    if (name === "product_image" && files) {
       setProductData((prevData) => ({
         ...prevData,
         [name]: files[0]
@@ -66,7 +66,7 @@ const ModalCreateProduct = () => {
     e.preventDefault();
     const formData = new FormData();
     Object.keys(productData).forEach((key) => {
-      if (key === "product_thumb") {
+      if (key === "product_image") {
         formData.append(key, productData[key]);
       } else if (key === "product_attributes") {
         formData.append(key, JSON.stringify(productData[key]));
@@ -89,7 +89,7 @@ const ModalCreateProduct = () => {
       <input type="text" name="product_name" placeholder="Product Name" value={productData.product_name} onChange={handleChange} />
 
       <label>Product Thumb</label>
-      <input type="file" name="product_thumb" placeholder="Product Thumb" onChange={handleChange} accept="image/*" />
+      <input type="file" name="product_image" placeholder="Product Thumb" onChange={handleChange} accept="image/*" />
 
       <label>Product Price</label>
       <input type="number" name="product_price" placeholder="Product Price" value={productData.product_price} onChange={handleChange} />
@@ -112,14 +112,14 @@ const ModalCreateProduct = () => {
 
       {/* Product Attributes */}
       <h3>Product Attributes</h3>
-      <label>House Description</label>
-      <input type="text" name="house_description" placeholder="House Description" value={productData.product_attributes.house_description} onChange={handleChange} />
+      <label>Product Description</label>
+      <input type="text" name="product_description" placeholder="Product Description" value={productData.product_attributes.product_description} onChange={handleChange} />
 
-      <label>House Detail</label>
-      <input type="text" name="house_detail" placeholder="House Detail" value={productData.product_attributes.house_detail} onChange={handleChange} />
+      <label>Product Detail</label>
+      <input type="text" name="product_detail" placeholder="Product Detail" value={productData.product_attributes.product_detail} onChange={handleChange} />
 
-      <label>House Rules</label>
-      <input type="text" name="house_rules" placeholder="House Rules" value={productData.product_attributes.house_rules} onChange={handleChange} />
+      <label>Product Rules</label>
+      <input type="text" name="product_rules" placeholder="Product Rules" value={productData.product_attributes.product_rules} onChange={handleChange} />
 
       <label>Rentail Conditions</label>
       <input type="text" name="rentail_conditions" placeholder="Rentail Conditions" value={productData.product_attributes.rentail_conditions} onChange={handleChange} />

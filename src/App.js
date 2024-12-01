@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { connect } from "react-redux";
 import "./App.scss";
 
-// import { render } from "@testing-library/react";
 import Layout from "./routes/LayoutPage/Layout";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
@@ -17,6 +16,7 @@ import PageHowWorks from "./routes/PageHowWorks/PageHowWorks";
 import CreateProduct from "../src/routes/Account/CreateProduct"
 import Overview from "../src/routes/Account/Overview"
 import EditProduct from "../src/routes/Account/EditProduct"
+import EditProductById from "../src/routes/Account/EditProductById"
 
 const App = () => {
   return (
@@ -34,9 +34,12 @@ const App = () => {
           <Route path="/create-product" element={<CreateProduct />} />
           <Route path="/overview" element={<Overview />} />
           <Route path="/edit-product" element={<EditProduct />} />
+          <Route path="/edit/:productId" element={<EditProductById />} />
+
           {/* <Route path={path.HOME} exact component={(Home)} />
           <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
           <Route path={path.SYSTEM} component={userIsAuthenticated(System)} /> */}
+
         </Routes>
       </span>
       <ToastContainer

@@ -1,20 +1,25 @@
-import React, { useState, useRef } from "react";
-import "./CreateProduct.scss";
+import React, { useState, useRef, useEffect } from "react";
+import "./EditProductById.scss";
 import { toast } from "react-toastify";
-// import { useNavigate } from 'react-router-dom';
-import { createNewProduct } from "../../services/apiProduct"
+import { updateProductById } from "../../services/apiProduct"
 import SideBar from "./SideBar"
+import { useParams, useLocation } from 'react-router-dom';
 import { convertAmenityName } from "../../utils/index"
 
-const CreateProduct = () => {
-  const [image, setImage] = useState([]);
+const EditProductById = () => {
+
+  const location = useLocation();
+  const { productId } = useParams();
+  const productData2 = location.state?.productData;
+  const [images, setImages] = useState([])
   const fileInputRef = useRef(null);
+
   const [productData, setProductData] = useState({
     product_name: '',
     product_image: [],
     product_price: 0,
     product_quantity: 0,
-    product_type: "Room",
+    product_type: '',
     product_size: 0,
     product_address: '',
     product_ratingsAverage: 0,
@@ -27,6 +32,35 @@ const CreateProduct = () => {
     },
     product_amenities: []
   });
+
+  useEffect(() => {
+    if (productData2) {
+      setProductData({
+        product_name: productData2.product_name,
+        product_image: productData2.product_image,
+        product_price: productData2.product_price,
+        product_quantity: productData2.product_quantity,
+        product_type: productData2.product_type,
+        product_size: productData2.product_size,
+        product_address: productData2.product_address,
+        product_ratingsAverage: productData2.product_ratingsAverage,
+        product_attributes: {
+          product_description: productData2.product_attributes.product_description,
+          product_detail: productData2.product_attributes.product_detail,
+          product_rules: productData2.product_attributes.product_rules,
+          rentail_conditions: productData2.product_attributes.rentail_conditions,
+          terms_and_conditions: productData2.product_attributes.terms_and_conditions,
+        },
+        product_amenities: productData2.product_amenities
+      });
+    };
+    if (productData2 && productData2.product_image) {
+      setImages(productData2.product_image);
+    }
+  }, [productData2]);
+
+  const ListAmenities = ["Wifi", "Furnished", "Swimming Pool", "Air Conditioner", "Terrace", "Tv", "Guest Allowed", "Washing Machine", "Shower", "Armored Door", "Living Room", "Lift", "Dish Washer", "Alarm", "Oven", "Freezer",
+    "Cooktop", "Fridge", "Centralized Heating", "Equipped Kitchen", "Bathtub", "Smart Tv", "Balcony", "Hair Dryer"];
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -77,78 +111,77 @@ const CreateProduct = () => {
     }
   };
 
+  ////////////////////////////
+
+  const handleBlur = (e) => {
+    const { name } = e.target
+    setProductData((prevData) => ({
+      ...prevData,
+      [name]: formatNumber(prevData[name])
+    }));
+  };
+
+  const formatNumber = (value) => {
+    return value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
+  /////////////////////////////
+
   const toggleAmenity = (amenity) => {
     setProductData((prevData) => {
-      const normalizedAmenity = convertAmenityName(amenity);
       const amenities = new Set(prevData.product_amenities);
-      if (amenities.has(normalizedAmenity)) {
-        amenities.delete(normalizedAmenity);
+      if (amenities.has(amenity)) {
+        amenities.delete(amenity);
       } else {
-        amenities.add(normalizedAmenity);
+        amenities.add(amenity);
       }
+      console.log(prevData)
       return { ...prevData, product_amenities: Array.from(amenities) };
+
     });
+  };
+
+  const handleSubmitPublicProduct = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    Object.keys(productData).forEach((key) => {
+      if (key === "product_image") {
+        productData[key].forEach((thumb) => {
+          formData.append(key, thumb.file);
+        });
+      } else if (key === "product_attributes") {
+        formData.append(key, JSON.stringify(productData[key]));
+      } else if (key === "product_amenities") {
+        formData.append(key, JSON.stringify(productData[key]));
+      } else {
+        formData.append(key, productData[key]);
+      }
+    });
+    const response = await updateProductById(productId, formData);
+    if (!response) {
+      toast.error("edit product fail!")
+    }
+    else {
+      toast.success("create product success!")
+    }
   };
 
   const handleClick = () => {
     fileInputRef.current.click();
   };
 
-  const handleSubmitDraftProduct = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    Object.keys(productData).forEach((key) => {
-      if (key === "product_image") {
-        productData[key].forEach((thumb) => {
-          formData.append(key, thumb.file);
-        });
-      } else if (key === "product_attributes") {
-        formData.append(key, JSON.stringify(productData[key]));
-      } else if (key === "product_amenities") {
-        formData.append(key, JSON.stringify(productData[key]));
-      } else {
-        formData.append(key, productData[key]);
-      }
-    });
-    const response = await createNewProduct(formData);
-    if (!response) {
-      toast.error("edit product fail!")
-    }
-    else {
-      toast.success("create product success!")
-    }
+  const removeAllImages = () => {
+    setProductData((prevData) => ({
+      ...prevData,
+      product_image: [],
+    }));
   };
 
-  const handleSubmitPublicProduct = async (e) => {
-    e.preventDefault();
-    console.log(productData)
-    const formData = new FormData();
-    Object.keys(productData).forEach((key) => {
-      if (key === "product_image") {
-        productData[key].forEach((thumb) => {
-          formData.append(key, thumb.file);
-        });
-      } else if (key === "product_attributes") {
-        formData.append(key, JSON.stringify(productData[key]));
-      } else if (key === "product_amenities") {
-        formData.append(key, JSON.stringify(productData[key]));
-      } else {
-        formData.append(key, productData[key]);
-      }
-    });
-    const response = await createNewProduct(formData);
-    if (!response) {
-      toast.error("edit product fail!")
-    }
-    else {
-      toast.success("create product success!")
-    }
-  };
 
   return (
     <div className="account-container">
       <SideBar />
-      <form className="account-content" id="myForm">
+      <form className="account-content" id="myForm2" onSubmit={handleSubmitPublicProduct}>
         <div className="account-header-create-product">
           <div className="account-title-header">
             <div className="icon-account-title-header">
@@ -160,13 +193,9 @@ const CreateProduct = () => {
             </div>
           </div>
           <div className="list-button-header-create-product">
-            <div className="account-button-save-product">
-              <i className="fa-sharp fa-light fa-floppy-disk-circle-arrow-right"></i>
-              <div onClick={handleSubmitDraftProduct}>Save to Draft</div>
-            </div>
-            <div className="account-button-save-product">
+            <div className="account-button-save-product" onClick={handleSubmitPublicProduct} role="button" >
               <i className="fa-light fa-floppy-disk"></i>
-              <div onClick={handleSubmitPublicProduct}>Save Product</div>
+              <div >Save Product</div>
             </div>
           </div>
         </div>
@@ -174,15 +203,21 @@ const CreateProduct = () => {
           <div className="account-product-image">
             <div className="title-product-image">Product image</div>
             <div className="child-title-product-image">Product image</div>
-            {productData.product_image.map((img, index) => (
-              <div key={index} className="show-image-product"                >
-                <img className="image-product" src={img.preview} alt={`Preview-${index}`} />
+            {images.map((img, index) => (
+              <div key={index} className="show-image-product">
+                <img className="image-product" src={img.url} alt={`Preview-${index}`} />
               </div>
             ))}
             <input type="file" accept="image/**" ref={fileInputRef} onChange={handleChange} style={{ display: "none" }} name="product_image" disabled={productData.product_image.length >= 5} multiple />
-            <div className="button-add-image-product" onClick={handleClick} >
-              <i className="fa-regular fa-upload"></i>
-              <div>Add Another Image</div>
+            <div className="action-image-product">
+              <div className="button-add-image-product" onClick={handleClick} >
+                <i className="fa-regular fa-upload"></i>
+                <div>Add Another Image</div>
+              </div>
+              <div className="button-remove-image-product" onClick={removeAllImages}>
+                <i className="fa-sharp fa-regular fa-eraser"></i>
+                <div>Remove All</div>
+              </div>
             </div>
           </div>
           <div className="account-general-information">
@@ -200,10 +235,11 @@ const CreateProduct = () => {
                 <div className="format-input-product">
                   <div className="name-input-product-price">Product Price (&#36;)</div>
                   <input
-                    type="number"
+                    type="text"
                     name="product_price"
                     placeholder="Product Price"
                     value={productData.product_price}
+                    onBlur={handleBlur}
                     onChange={handleChange}
                   />
                 </div>
@@ -226,14 +262,15 @@ const CreateProduct = () => {
                     name="product_size"
                     placeholder="Product Size"
                     value={productData.product_size}
+                    onBlur={handleBlur}
                     onChange={handleChange}
                   />
                 </div>
               </div>
               <div className="name-input-product-type">Product Type</div>
               <select
-                name="product_type"
                 className="product_type"
+                name="product_type"
                 value={productData.product_type}
                 onChange={handleChange}
               >
@@ -249,6 +286,7 @@ const CreateProduct = () => {
                 value={productData.product_address}
                 onChange={handleChange}
               />
+
               <div className="name-input-product-attributes">Product Attributes</div>
 
               <div className="name-input-product-description">Product Description</div>
@@ -274,6 +312,7 @@ const CreateProduct = () => {
                   />
                 </>
               )}
+
               <div className="name-input-product-rules">Product Rules</div>
               <textarea
                 type="text"
@@ -303,21 +342,26 @@ const CreateProduct = () => {
 
               <div className="name-input-product-amenities">Product Amenities</div>
               <div className="list-amenities-product">
-                {["Wifi", "Furnished", "Swimming Pool", "Air Conditioner", "Terrace", "Tv", "Guest Allowed", "Washing Machine", "Shower", "Armored Door", "Living Room", "Lift", "Dish Washer", "Alarm", "Oven", "Freezer",
-                  "Cooktop", "Fridge", "Centralized Heating", "Equipped Kitchen", "Bathtub", "SmartTv", "Balcony", "Hair Dryer"
-                ].map((amenity) => (
-                  <div key={amenity} className="amenity">
-                    <input type="checkbox" onChange={() => toggleAmenity(amenity)} />
-                    {amenity}
-                  </div>
-                ))}
+                {ListAmenities.map((amenity) => {
+                  const normalizedAmenity = convertAmenityName(amenity);
+                  return (
+                    <div key={normalizedAmenity} className="amenity">
+                      <input
+                        type="checkbox"
+                        checked={productData.product_amenities.includes(normalizedAmenity)}
+                        onChange={() => toggleAmenity(normalizedAmenity)}
+                      />
+                      {amenity}
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>
         </div>
-      </form>
+      </form >
     </div >
   );
 };
 
-export default CreateProduct;
+export default EditProductById;
